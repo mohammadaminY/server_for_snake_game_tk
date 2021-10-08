@@ -15,14 +15,16 @@ def get_all_best_score(request):
 
 
 @api_view(['PUT'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def set_best_score(request, pk):
-    query = BestScore.objects.get(pk=pk)
-    serializer = BestScoreModelSerializer(query, data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status.HTTP_201_CREATED)
-    return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+    if request.user.id == pk:
+        query = BestScore.objects.get(pk=pk)
+        serializer = BestScoreModelSerializer(query, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status.HTTP_201_CREATED)
+        return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+    return Response({'error': 'You not allowed to other best scores'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 
 @api_view(['POST'])
@@ -42,7 +44,7 @@ def delete_best_score(request, pk):
 
 
 @api_view(['GET'])
-# @permission_classes()
+@permission_classes([IsAuthenticated])
 def get_my_rank(request, pk):
     query = BestScore.objects.all().order_by('-best_score')
     rank = 1
