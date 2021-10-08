@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pages', 'score',
+    'pages', 'best_score',
     'rest_framework', 'djoser'
 ]
 
