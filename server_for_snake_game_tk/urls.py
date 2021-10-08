@@ -17,7 +17,9 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('api/v1/score/', include('score.urls')),
+    path('api/v1/best-score/', include('best_score.urls')),
+    path('api/v1/auth/', include('djoser.urls')),
+    path('api/v1/auth/', include('djoser.urls.authtoken')),
     path('', include('pages.urls')),
     path('admin/', admin.site.urls),
 ]

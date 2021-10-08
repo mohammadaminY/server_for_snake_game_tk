@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pages', 'best_score',
-    'rest_framework', 'djoser'
+    'rest_framework', 'djoser', 'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
@@ -122,9 +122,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-        'rest_framework.authentications.BasicAuthentication',
-        'rest_framework.authentications.SessionAuthentication',
-        'rest_framework.authentications.TokenAuthentication'
+        # 'rest_framework.permissions.Anyone',
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication'
     ]
 }
